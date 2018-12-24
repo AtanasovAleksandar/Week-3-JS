@@ -20,7 +20,6 @@ function validationOnInput() {
     } else {
         getName.classList.remove("not-valid");
         this.user.name = document.getElementById('inputName').value;
-        document.getElementById('inputName').value = '';
     }
 
     if (document.getElementById('inputAddress').value == '') {
@@ -55,7 +54,14 @@ function validationOnInput() {
     if (this.user.name != '' && this.user.address != '' && this.user.city != '' && this.user.pincod != '' && this.user.country != '') {
         this.Users.push(user);
         console.log(this.Users)
-        
+
+        this.user.name = '';
+        this.user.address = '';
+        this.user.city = '';
+        this.user.country = '';
+        this.user.pincod = '' ;
+
+        document.getElementById('inputName').value = '';
         document.getElementById('inputAddress').value = '';
         document.getElementById('inputCity').value = '';
         document.getElementById('inputCountry').value = '';
