@@ -50,16 +50,16 @@ function validationOnInput() {
         this.user.pincod = document.getElementById('inputPinCode').value
     }
 
-    // error e tuka na krajot ne zapisuva 
+
     if (this.user.name != '' && this.user.address != '' && this.user.city != '' && this.user.pincod != '' && this.user.country != '') {
         this.Users.push(user);
+        console.log(this.user)
         console.log(this.Users)
-
         this.user.name = '';
         this.user.address = '';
         this.user.city = '';
         this.user.country = '';
-        this.user.pincod = '' ;
+        this.user.pincod = '';
 
         document.getElementById('inputName').value = '';
         document.getElementById('inputAddress').value = '';
