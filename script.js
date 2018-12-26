@@ -7,7 +7,7 @@ var PinCode = '';
 var counter = 1;
 
 var Users = [];
-var user = { 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
+var user = { 'id': counter, 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
 
 
 
@@ -65,7 +65,7 @@ function validationOnInput() {
     if (this.Name != '' && this.Address != '' && this.City != '' && this.PinCode != '' && this.Country != '') {
 
         Users.push(userObj);
-        // new user = { 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
+
         addRowInTable()
         console.log(this.user);
         console.log(this.Users);
@@ -103,8 +103,19 @@ function addRowInTable() {
     cell4.innerHTML = user.city;
     cell5.innerHTML = user.pincod;
     cell6.innerHTML = user.country
-    cell7.innerHTML = '<i class="fas fa-eye"></i> <i class="fas fa-pen"> </i><i class="far fa-trash-alt"></i>';
-  }
+    cell7.innerHTML = '<i onclick="writeInformation()" class="fas fa-eye"></i> <i class="fas fa-pen"> </i><i class="far fa-trash-alt"></i>';
+}
+
+function writeInformation() {
+    for (var i = 0; i < Users.length; i++) {
+        if (Users[i].id == user.id) {
+            console.log(Users[i].name);
+        }
+    }
+}
+
+
+
 
 
 
