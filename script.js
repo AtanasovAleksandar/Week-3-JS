@@ -4,6 +4,8 @@ var City = '';
 var Country = '';
 var PinCode = '';
 
+var counter = 1;
+
 var Users = [];
 var user = { 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
 
@@ -64,7 +66,7 @@ function validationOnInput() {
        
         Users.push(userObj);
         // new user = { 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
-        
+        addRowInTable()
         console.log(this.user);
         console.log(this.Users);
 
@@ -81,6 +83,28 @@ function validationOnInput() {
         document.getElementById('inputPinCode').value = '';
     }
 }
+
+function addRowInTable() {
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+   
+    counter++;
+
+    cell1.innerHTML = counter;
+    cell2.innerHTML = user.name;
+    cell3.innerHTML = user.address;
+    cell4.innerHTML = user.city;
+    cell5.innerHTML = user.pincod;
+    cell6.innerHTML = user.country
+    cell7.innerHTML = '';
+  }
 
 
 
