@@ -4,9 +4,10 @@ var City = '';
 var Country = '';
 var PinCode = '';
 
-
 var Users = [];
-var user = { 'name': this.Name, 'address': this.Address, 'city': this.City, 'pincod': this.PinCode, 'country': this.PinCode }
+var user = { 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
+
+
 
 function validationOnInput() {
     var getName = document.getElementById('inputName')
@@ -19,47 +20,59 @@ function validationOnInput() {
         getName.classList.add("not-valid");
     } else {
         getName.classList.remove("not-valid");
-        this.user.name = document.getElementById('inputName').value;
+        user.name = document.getElementById('inputName').value;
     }
 
     if (document.getElementById('inputAddress').value == '') {
         getAddress.classList.add('not-valid');
     } else {
         getAddress.classList.remove("not-valid");
-        this.user.address = document.getElementById('inputAddress').value;
+       user.address = document.getElementById('inputAddress').value;
     }
 
     if (document.getElementById('inputCity').value == '') {
         getCity.classList.add('not-valid');
     } else {
         getCity.classList.remove('not-valid');
-        this.user.city = document.getElementById('inputCity').value;
+        user.city = document.getElementById('inputCity').value;
     }
 
     if (document.getElementById('inputCountry').value == '') {
         getCountry.classList.add('not-valid');
     } else {
         getCountry.classList.remove('not-valid');
-        this.user.country = document.getElementById('inputCountry').value;
+        user.country = document.getElementById('inputCountry').value;
     }
 
     if (document.getElementById('inputPinCode').value == '') {
         getPinCode.classList.add('not-valid');
     } else {
         getPinCode.classList.remove('not-valid');
-        this.user.pincod = document.getElementById('inputPinCode').value
+        user.pincod = document.getElementById('inputPinCode').value
     }
 
+    this.Name = this.user.name;
+    this.Address = this.user.address;
+    this.City = this.user.city;
+    this.Country = this.user.country;
+    this.PinCode = this.user.pincod;
 
-    if (this.user.name != '' && this.user.address != '' && this.user.city != '' && this.user.pincod != '' && this.user.country != '') {
-        this.Users.push(user);
-        console.log(this.user)
-        console.log(this.Users)
-        this.user.name = '';
-        this.user.address = '';
-        this.user.city = '';
-        this.user.country = '';
-        this.user.pincod = '';
+    var userObj = Object.assign({}, user);
+    console.log(userObj)
+
+    if (this.Name != '' && this.Address != '' && this.City != '' && this.PinCode != '' && this.Country != '') {
+       
+        Users.push(userObj);
+        // new user = { 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
+        
+        console.log(this.user);
+        console.log(this.Users);
+
+        this.Name = ''
+        this.Address = ''
+        this.City = ''
+        this.Country = ''
+        this.PinCode = ''
 
         document.getElementById('inputName').value = '';
         document.getElementById('inputAddress').value = '';
@@ -68,6 +81,8 @@ function validationOnInput() {
         document.getElementById('inputPinCode').value = '';
     }
 }
+
+
 
 
 
