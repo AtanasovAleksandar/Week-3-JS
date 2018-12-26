@@ -29,7 +29,7 @@ function validationOnInput() {
         getAddress.classList.add('not-valid');
     } else {
         getAddress.classList.remove("not-valid");
-       user.address = document.getElementById('inputAddress').value;
+        user.address = document.getElementById('inputAddress').value;
     }
 
     if (document.getElementById('inputCity').value == '') {
@@ -63,7 +63,7 @@ function validationOnInput() {
     console.log(userObj)
 
     if (this.Name != '' && this.Address != '' && this.City != '' && this.PinCode != '' && this.Country != '') {
-       
+
         Users.push(userObj);
         // new user = { 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
         addRowInTable()
@@ -94,7 +94,7 @@ function addRowInTable() {
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
     var cell7 = row.insertCell(6);
-   
+
     counter++;
 
     cell1.innerHTML = counter;
@@ -103,7 +103,7 @@ function addRowInTable() {
     cell4.innerHTML = user.city;
     cell5.innerHTML = user.pincod;
     cell6.innerHTML = user.country
-    cell7.innerHTML = '';
+    cell7.innerHTML = '<i class="fas fa-eye"></i> <i class="fas fa-pen"> </i><i class="far fa-trash-alt"></i>';
   }
 
 

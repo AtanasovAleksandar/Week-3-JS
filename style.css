@@ -11,7 +11,7 @@ form {
     position: relative;
 }
 
-button {
+.btn-write {
     width: 200px;
     height: 50px;
     position: absolute;
@@ -20,4 +20,19 @@ button {
 
 .not-valid {
     border: 1px solid red;
+}
+
+.btn-info {
+    display: inline-block;
+}
+.fas {
+    font-weight: 900;
+    font-size: 25px;
+    margin-left: 15px;
+}
+
+.far {
+    font-weight: 900;
+    font-size: 25px;
+    margin-left: 15px;
 }
