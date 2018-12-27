@@ -133,7 +133,7 @@ function ShowRowForEdit(row) {
     console.log(elem)
     console.log(row.parentNode.parentNode)
 
-    var icon = document.getElementById('editeble'+ user.id)
+    var icon = document.getElementById('editeble' + user.id)
     icon.classList.add('fa-save')
 
     var colName = row.parentNode.parentNode.childNodes[1]
@@ -175,25 +175,14 @@ function saveNewValues(table) {
     var newCountry = document.getElementById('setCount').value
     console.log(newName, newAddress, newCity, newPinCode, newCountry)
 
-    // var colName = row.parentNode.parentNode.childNodes[1]
-    // var colAddess = row.parentNode.parentNode.childNodes[2]
-    // var colCity = row.parentNode.parentNode.childNodes[3]
-    // var colPinCode = row.parentNode.parentNode.childNodes[4]
-    // var colCountry = row.parentNode.parentNode.childNodes[5]
 
-    // colName.innerHTML = newName
-    // colAddess.innerHTML = newAddress
-    // colCity.innerHTML = newCity
-    // colPinCode.innerHTML = newPinCode
-    // colCountry.innerHTML = newCountry
+    console.log(table.parentNode)
 
-console.log(table.parentNode)
-
-table.parentNode.childNodes[1].innerHTML = newName
-table.parentNode.childNodes[2].innerHTML = newAddress
-table.parentNode.childNodes[3].innerHTML = newCity
-table.parentNode.childNodes[4].innerHTML = newPinCode
-table.parentNode.childNodes[5].innerHTML = newCountry
+    table.parentNode.childNodes[1].innerHTML = newName
+    table.parentNode.childNodes[2].innerHTML = newAddress
+    table.parentNode.childNodes[3].innerHTML = newCity
+    table.parentNode.childNodes[4].innerHTML = newPinCode
+    table.parentNode.childNodes[5].innerHTML = newCountry
 
 
 
