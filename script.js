@@ -4,10 +4,10 @@ var City = '';
 var Country = '';
 var PinCode = '';
 
-var counter = 1;
+var counter = 0;
 
 var Users = [];
-var user = { 'id': counter, 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
+var user = { 'id': '', 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
 
 
 
@@ -23,6 +23,7 @@ function validationOnInput() {
     } else {
         getName.classList.remove("not-valid");
         user.name = document.getElementById('inputName').value;
+        user.id = counter 
     }
 
     if (document.getElementById('inputAddress').value == '') {
@@ -97,21 +98,31 @@ function addRowInTable() {
 
     counter++;
 
-    cell1.innerHTML = counter;
+    cell1.innerHTML = user.id + 1;
     cell2.innerHTML = user.name;
     cell3.innerHTML = user.address;
     cell4.innerHTML = user.city;
     cell5.innerHTML = user.pincod;
     cell6.innerHTML = user.country
-    cell7.innerHTML = '<i onclick="writeInformation()" class="fas fa-eye"></i> <i class="fas fa-pen"> </i><i class="far fa-trash-alt"></i>';
+    cell7.innerHTML = '<i onclick="alertInfo(this)" class="fas fa-eye"></i> <i class="fas fa-pen"> </i><i onclick="deletRow(this)" class="far fa-trash-alt"></i>';
 }
 
-function writeInformation() {
+function deletRow(r) {
+    var i = r.parentNode.parentNode.rowIndex;
+    document.getElementById("myTable").deleteRow(i);
+    counter -- 
+}
+
+function alertInfo(row) {
+    var elem = row.parentNode.parentNode.rowIndex;
+    console.log(elem)
     for (var i = 0; i < Users.length; i++) {
-        if (Users[i].id == user.id) {
-            console.log(Users[i].name);
-        }
+       if ( Users[i].id == elem - 1 ) {
+           var UserObject = Users[i];
+           console.log(UserObject)
+       }
     }
+    alert(' Name: '+ UserObject.name +' Addres: '+ UserObject.address+' City: '+ UserObject.city)
 }
 
 
