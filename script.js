@@ -3,7 +3,7 @@ var Address = '';
 var City = '';
 var Country = '';
 var PinCode = '';
-
+var userObj;
 var counter = 0;
 
 var Users = [];
@@ -23,7 +23,7 @@ function validationOnInput() {
     } else {
         getName.classList.remove("not-valid");
         user.name = document.getElementById('inputName').value;
-        user.id = counter 
+        user.id = counter
     }
 
     if (document.getElementById('inputAddress').value == '') {
@@ -60,7 +60,7 @@ function validationOnInput() {
     this.Country = this.user.country;
     this.PinCode = this.user.pincod;
 
-    var userObj = Object.assign({}, user);
+    userObj = Object.assign({}, user);
     console.log(userObj)
 
     if (this.Name != '' && this.Address != '' && this.City != '' && this.PinCode != '' && this.Country != '') {
@@ -104,27 +104,65 @@ function addRowInTable() {
     cell4.innerHTML = user.city;
     cell5.innerHTML = user.pincod;
     cell6.innerHTML = user.country
-    cell7.innerHTML = '<i onclick="alertInfo(this)" class="fas fa-eye"></i> <i class="fas fa-pen"> </i><i onclick="deletRow(this)" class="far fa-trash-alt"></i>';
+    cell7.innerHTML = '<i onclick="alertInfo(this)" class="fas fa-eye"></i> <i onclick="displayMod()" id="myBtn" class="fas fa-pen"> </i><i onclick="deletRow(this)" class="far fa-trash-alt"></i>';
 }
 
 function deletRow(r) {
     var i = r.parentNode.parentNode.rowIndex;
     document.getElementById("myTable").deleteRow(i);
-    counter -- 
+    counter--
 }
 
 function alertInfo(row) {
     var elem = row.parentNode.parentNode.rowIndex;
     console.log(elem)
     for (var i = 0; i < Users.length; i++) {
-       if ( Users[i].id == elem - 1 ) {
-           var UserObject = Users[i];
-           console.log(UserObject)
-       }
+        if (Users[i].id == elem - 1) {
+            var UserObject = Users[i];
+            console.log(UserObject)
+        }
     }
-    alert(' Name: '+ UserObject.name +' Addres: '+ UserObject.address+' City: '+ UserObject.city)
+    alert(' Name: ' + UserObject.name + ' Addres: ' + UserObject.address + ' City: ' + UserObject.city)
 }
 
+
+// When the user clicks on the button, open the modal 
+function displayMod() {
+    document.getElementById('myModal').style.display = "block";
+    takeValues()
+}
+
+// document.getElementById('closeELement').onclick = function() { close()}
+
+// When the user clicks on <span> (x), close the modal
+function close() {
+    document.getElementById('myModal').style.display = "none"
+}
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
+
+function takeValues() {
+    document.getElementById('formGroupChangeName').value = this.userObj.name
+    document.getElementById('formGroupChangeAddress').value = userObj.address
+    document.getElementById('formGroupChangeCity').value = userObj.city
+    document.getElementById('formGroupChangePinCode').value = userObj.pincod
+    document.getElementById('formGroupChangeCountry').value = userObj.country
+}
+
+function changeRow() {
+    userObj.name = document.getElementById('formGroupChangeName').value
+    userObj.address = document.getElementById('formGroupChangeAddress').value
+    userObj.city = document.getElementById('formGroupChangeCity').value
+    userObj.pincod = document.getElementById('formGroupChangePinCode').value
+    userObj.country = document.getElementById('formGroupChangeCountry').value
+    
+   console.log(userObj)
+}
 
 
 
