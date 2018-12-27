@@ -110,7 +110,6 @@ function addRowInTable() {
 function deletRow(r) {
     indexOfTableRow = r.parentNode.parentNode.rowIndex;
 
-
     indexOfTableRow
     document.getElementById("myTable").deleteRow(i);
     counter--
@@ -162,12 +161,12 @@ function ShowRowForEdit(row) {
 
     icon.onclick = function () {
         if (icon.classList[2] == 'fa-save') {
-            saveNewValues(row.parentNode);
+            saveNewValues(row.parentNode, icon);
         }
     }
 }
 
-function saveNewValues(table) {
+function saveNewValues(table, icon) {
     var newName = document.getElementById('setName').value
     var newAddress = document.getElementById('setAddr').value
     var newCity = document.getElementById('setCit').value;
@@ -175,6 +174,7 @@ function saveNewValues(table) {
     var newCountry = document.getElementById('setCount').value
     console.log(newName, newAddress, newCity, newPinCode, newCountry)
 
+    icon.classList.remove('fa-save')
 
     console.log(table.parentNode)
 
@@ -183,8 +183,6 @@ function saveNewValues(table) {
     table.parentNode.childNodes[3].innerHTML = newCity
     table.parentNode.childNodes[4].innerHTML = newPinCode
     table.parentNode.childNodes[5].innerHTML = newCountry
-
-
 
 }
 
