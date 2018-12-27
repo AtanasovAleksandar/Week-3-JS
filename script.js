@@ -5,11 +5,10 @@ var Country = '';
 var PinCode = '';
 var userObj;
 var counter = 0;
+var indexOfTableRow;
 
 var Users = [];
 var user = { 'id': '', 'name': '', 'address': '', 'city': '', 'pincod': '', 'country': '' }
-
-
 
 function validationOnInput() {
     var getName = document.getElementById('inputName')
@@ -86,6 +85,7 @@ function validationOnInput() {
 }
 
 function addRowInTable() {
+
     var table = document.getElementById("myTable");
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
@@ -104,11 +104,14 @@ function addRowInTable() {
     cell4.innerHTML = user.city;
     cell5.innerHTML = user.pincod;
     cell6.innerHTML = user.country
-    cell7.innerHTML = '<i onclick="alertInfo(this)" class="fas fa-eye"></i> <i onclick="displayMod()" id="myBtn" class="fas fa-pen"> </i><i onclick="deletRow(this)" class="far fa-trash-alt"></i>';
+    cell7.innerHTML = '<i onclick="alertInfo(this)" class="fas fa-eye"></i> <i onclick="ShowRowForEdit(this)" id="editeble' + user.id + '" class="fas fa-pen"> </i><i onclick="deletRow(this)" class="far fa-trash-alt"></i>';
 }
 
 function deletRow(r) {
-    var i = r.parentNode.parentNode.rowIndex;
+    indexOfTableRow = r.parentNode.parentNode.rowIndex;
+
+
+    indexOfTableRow
     document.getElementById("myTable").deleteRow(i);
     counter--
 }
@@ -125,43 +128,95 @@ function alertInfo(row) {
     alert(' Name: ' + UserObject.name + ' Addres: ' + UserObject.address + ' City: ' + UserObject.city)
 }
 
+function ShowRowForEdit(row) {
+    var elem = row.parentNode.parentNode.rowIndex;
+    console.log(elem)
+    console.log(row.parentNode.parentNode)
 
-// When the user clicks on the button, open the modal 
-function displayMod() {
-    document.getElementById('myModal').style.display = "block";
-    takeValues()
+    var icon = document.getElementById('editeble'+ user.id)
+    icon.classList.add('fa-save')
+
+    var colName = row.parentNode.parentNode.childNodes[1]
+    var colAddess = row.parentNode.parentNode.childNodes[2]
+    var colCity = row.parentNode.parentNode.childNodes[3]
+    var colPinCode = row.parentNode.parentNode.childNodes[4]
+    var colCountry = row.parentNode.parentNode.childNodes[5]
+
+    var oldName = colName.innerHTML;
+    var oldAddres = colAddess.innerHTML
+    var oldCity = colCity.innerHTML
+    var oldPinCOde = colPinCode.innerHTML
+    var oldCountry = colCountry.innerHTML
+
+    colName.innerHTML = "<input id='setName' type='text'>"
+    colAddess.innerHTML = "<input id='setAddr' type='text'>"
+    colCity.innerHTML = "<input id='setCit' type='text'>"
+    colPinCode.innerHTML = "<input id='setPinCod' type='text'>"
+    colCountry.innerHTML = "<input id='setCount' type='text'>"
+
+    document.getElementById('setName').value = oldName;
+    document.getElementById('setAddr').value = oldAddres;
+    document.getElementById('setCit').value = oldCity;
+    document.getElementById('setPinCod').value = oldPinCOde;
+    document.getElementById('setCount').value = oldCountry;
+
+    icon.onclick = function () {
+        if (icon.classList[2] == 'fa-save') {
+            saveNewValues(row.parentNode);
+        }
+    }
 }
 
-// document.getElementById('closeELement').onclick = function() { close()}
+function saveNewValues(table) {
+    var newName = document.getElementById('setName').value
+    var newAddress = document.getElementById('setAddr').value
+    var newCity = document.getElementById('setCit').value;
+    var newPinCode = document.getElementById('setPinCod').value
+    var newCountry = document.getElementById('setCount').value
+    console.log(newName, newAddress, newCity, newPinCode, newCountry)
 
-// When the user clicks on <span> (x), close the modal
-function close() {
-    document.getElementById('myModal').style.display = "none"
+    // var colName = row.parentNode.parentNode.childNodes[1]
+    // var colAddess = row.parentNode.parentNode.childNodes[2]
+    // var colCity = row.parentNode.parentNode.childNodes[3]
+    // var colPinCode = row.parentNode.parentNode.childNodes[4]
+    // var colCountry = row.parentNode.parentNode.childNodes[5]
+
+    // colName.innerHTML = newName
+    // colAddess.innerHTML = newAddress
+    // colCity.innerHTML = newCity
+    // colPinCode.innerHTML = newPinCode
+    // colCountry.innerHTML = newCountry
+
+console.log(table.parentNode)
+
+table.parentNode.childNodes[1].innerHTML = newName
+table.parentNode.childNodes[2].innerHTML = newAddress
+table.parentNode.childNodes[3].innerHTML = newCity
+table.parentNode.childNodes[4].innerHTML = newPinCode
+table.parentNode.childNodes[5].innerHTML = newCountry
+
+
+
 }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
 
 function takeValues() {
-    document.getElementById('formGroupChangeName').value = this.userObj.name
+    document.getElementById('formGroupChangeName').value = userObj.name
     document.getElementById('formGroupChangeAddress').value = userObj.address
     document.getElementById('formGroupChangeCity').value = userObj.city
     document.getElementById('formGroupChangePinCode').value = userObj.pincod
     document.getElementById('formGroupChangeCountry').value = userObj.country
 }
 
-function changeRow() {
-    userObj.name = document.getElementById('formGroupChangeName').value
-    userObj.address = document.getElementById('formGroupChangeAddress').value
-    userObj.city = document.getElementById('formGroupChangeCity').value
-    userObj.pincod = document.getElementById('formGroupChangePinCode').value
-    userObj.country = document.getElementById('formGroupChangeCountry').value
-    
-   console.log(userObj)
+function changeRow(r) {
+    user.name = document.getElementById('formGroupChangeName').value
+    user.address = document.getElementById('formGroupChangeAddress').value
+    user.city = document.getElementById('formGroupChangeCity').value
+    user.pincod = document.getElementById('formGroupChangePinCode').value
+    user.country = document.getElementById('formGroupChangeCountry').value
+
+    var elem = r.parentNode.parentNode.rowIndex;
+    console.log(elem)
+
 }
 
 
